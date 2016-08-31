@@ -34,6 +34,7 @@ class SuperSearchLine {
 		this.linkTextEl1 = document.createElement('div');
 		this.linkTextEl2 = document.createElement('div');
 		this.linkTextEl3 = document.createElement('div');
+
 		this.linkTextEl1.classList.add(`${this.baseClass}__link-text`);
 		this.linkTextEl2.classList.add(`${this.baseClass}__link-text`);
 		this.linkTextEl3.classList.add(`${this.baseClass}__link-text`);
@@ -167,6 +168,8 @@ class SuperSearchLine {
 	  
 	  // в обязательном порядке копируем стили с исходного элемента, 
 	  // что бы размеры соответствовали исходнику.
+	  let style = window.getComputedStyle(el, null);
+	  clone.classList = el.classList;	  
 	  for (let i in el.style) {
 	    try {
 	      if ((el.style[i] != '') && (el.style[i].indexOf(":") > 0)) {
@@ -179,21 +182,14 @@ class SuperSearchLine {
 	  // Учитываем, что IE не позволяет напрямую устанавливать значение аттрибута style
 	  document.all ? clone.style.setAttribute('cssText', hiddenStyle) : clone.setAttribute('style', hiddenStyle);
 
-	  // Переносим содержимое. Аккуратно.
 	  clone.innerHTML = el.innerHTML
 	  
-	  // Добавляем клон в корневой документ. 
-	  // Так, на всякий пожарный в parent, а то вдруг элемент внутри iframe?
 	  parent.document.body.appendChild(clone);
 	  
-	  // Забиваем заветное.
 	  let width = clone.clientWidth;
 	  console.log(width);
-	  
-	  // ...и тут же удаляем
 	  parent.document.body.removeChild(clone);
 
-	  // Вот собственно говоря и все.
 	  return width;
 	}
 
