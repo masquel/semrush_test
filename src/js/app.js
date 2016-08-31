@@ -76,10 +76,7 @@ class SuperSearchLine {
 		e.preventDefault();
 		let XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
 		let r = new XHR();
-		let data = {
-			"formId": this.id,
-			"query": this.superSearchLineInput.value
-		};
+		let data = `formId=${encodeURIComponent(this.id)}&query=${encodeURIComponent(this.superSearchLineInput.value)}`;
 		r.open("POST",this.remote);
 		r.onload = (response) => {
 			console.log(response);
