@@ -146,7 +146,6 @@ class SuperSearchLine {
 				let domain = result[2];
 				let query = result[3];
 				let superSearchLineResult = this.superSearchLineResultGenerator(protocol,domain,query);
-				console.log(true);
 				this.superSearchLineForm.appendChild(superSearchLineResult);
 			}		
 		}else{
@@ -184,7 +183,6 @@ class SuperSearchLine {
 	  parent.document.body.appendChild(clone);
 	  
 	  let width = clone.clientWidth;
-	  console.log(width);
 	  parent.document.body.removeChild(clone);
 
 	  return width;
